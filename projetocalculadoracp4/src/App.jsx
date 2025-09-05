@@ -1,31 +1,33 @@
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import Nav from './components/Nav'
-import Footer from './components/Footer'
-function App() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+import Home from "./routes/Home";
+import CalculadoraNormal from "./routes/CalculadoraNormal";
+import Contato from "./routes/Contato";
+import Compra from "./routes/Compra";
 
-
+export default function App() {
   return (
-    // HABILITA A NAVEGAÇÃO POR ROTAS NA APLICAÇÃO
-    <BrowserRouter>
-    <Nav/>
-    <main>
-      {/* Gerencia a exibição dos componentes com base na url */}
-      <Routes>
-        {/* Rota para lidar com as urls não encontradas */}
-        <Route path="*" element={<Error/>}/>
+    <Router>
+      <div className="flex flex-col min-h-screen bg-gray-900 text-gray-100">
+        <Nav />
+        <main className="flex-grow">
+          <Routes>
+          
+            <Route path="/" element={<Home />} />       
+            <Route path="/home" element={<Home />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/compra/:id" element={<Compra />} />
+            <Route path="/calculadora-normal" element={<CalculadoraNormal />} />
 
-        {/* Rota para chamar a página home */}
-        <Route path="/" element={<Home/>}/>
-
-         {/* Rota para chamar a página Cliente */}
-        <Route path="/cliente" element={<Cliente/>}/>
+          </Routes>
+          
+        </main>
         
-
-      </Routes>
-    </main>
-     <Footer/>
-    </BrowserRouter>
-  )
+        
+       
+        <Footer />
+      </div>
+    </Router>
+  );
 }
-
-export default App
